@@ -45,7 +45,8 @@ GLUON_SITE_PACKAGES := \
 #####################################################################################################################
 
 # This is the test branch -> x.y.z-test
-DEFAULT_GLUON_RELEASE := ffm-1.10.1-test        # This needs to be changed after each online release
+# This needs to be changed after each online release
+DEFAULT_GLUON_RELEASE := ffm-1.10.1-test
 
 # For homebrew development add e.g. date and time 
 # (don't use the ':' char. It will break the build)
