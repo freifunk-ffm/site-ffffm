@@ -3,6 +3,8 @@ GLUON_SITE_PACKAGES := \
 	gluon-alfred \
 	gluon-announced \
 	gluon-autoupdater \
+	gluon-setup-mode \
+	gluon-config-mode-core \
 	gluon-config-mode-autoupdater \
 	gluon-config-mode-hostname \
 	gluon-config-mode-mesh-vpn \
@@ -14,27 +16,37 @@ GLUON_SITE_PACKAGES := \
 	gluon-luci-autoupdater \
 	gluon-luci-portconfig \
 	gluon-luci-private-wifi \
+	gluon-luci-mesh-vpn-fastd \
+	gluon-luci-wifi-config \
+	gluon-luci-node-role \
+	gluon-luci-switchconfig \
 	gluon-next-node \
 	gluon-mesh-vpn-fastd \
-	gluon-luci-switchconfig \
-	gluon-ffmautokey \
 	gluon-radvd \
 	gluon-status-page \
-	collectd5 \
-	collectd-mod-ping \
-	collectd-mod-interface \
-	collectd-mod-load \
-	collectd-mod-cpu \
-	collectd-mod-memory \
-	collectd-mod-network \
-	collectd-mod-iwinfo \
 	iwinfo \
 	iptables \
-	gluon-ffmcollectdconfig \
-	haveged
+	ffffm-ebtables-net-rules \
+	haveged 
 
 
-DEFAULT_GLUON_RELEASE := 0.4.2+0-exp$(shell date '+%Y%m%d')
+#####################################################################################################################
+
+# This is the Test branch
+DEFAULT_GLUON_RELEASE := 2015.2.1-test
+
+# For homebrew development add e.g. date and time 
+# (don't use the ':' char. It will break the build)
+# DEFAULT_GLUON_RELEASE := $(DEFAULT_GLUON_RELEASE)-$(shell date '+%m.%d-%H%M')
 
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
+
+# Development branch information
+GLUON_BRANCH ?= test
+
+# Default priority for updates.
+# GLUON_PRIORITY ?= 0
+
+# Languages to include
+GLUON_LANGS ?= en de
