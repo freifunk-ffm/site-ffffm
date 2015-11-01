@@ -31,22 +31,9 @@ GLUON_SITE_PACKAGES := \
 
 
 #####################################################################################################################
-# Firmware Versioning
-#####################################################################################################################
-# Release Stable: x.y-stable
-# Release Test:   x.y.z-test
-# Release Dev:    x.y.z.w-dev (+Date/Time)
-#
-# Geht eine Dev-Version in Test über, so können identische  Dateien in 'test' und 'dev' abgelegt werden.
-# Geht eine Test-Version in Stable über, so können identische Dateien in 'stable', 'test' und 'dev' abgelegt werden. 
-#
-# Autoupdate ist weiterhin gewehrleistet! 
-# Per Definition ist 'x.y-stable' grösser als 'x.y.z-test' und grösser als 'x.y.z.w-dev'
-#####################################################################################################################
 
-# This is the test branch -> x.y.z-test
-# This needs to be changed after each online release
-DEFAULT_GLUON_RELEASE := ffm-1.10.1-test
+# This is the Test branch
+DEFAULT_GLUON_RELEASE := 2015.2.1-test
 
 # For homebrew development add e.g. date and time 
 # (don't use the ':' char. It will break the build)
