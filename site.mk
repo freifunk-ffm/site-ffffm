@@ -1,12 +1,10 @@
 GLUON_SITE_PACKAGES := \
 	gluon-mesh-babel \
+	gluon-l3roamd \
 	gluon-radvd \
-	haveged \
-	iwinfo \
-	iptables \
-	babeldev \
 	gluon-xlat464-clat \
 	gluon-respondd \
+	respondd-module-airtime \
 	gluon-autoupdater \
 	gluon-setup-mode \
 	gluon-client-bridge \
@@ -18,22 +16,26 @@ GLUON_SITE_PACKAGES := \
 	gluon-config-mode-contact-info \
 	gluon-web-admin \
 	gluon-web-autoupdater \
-	gluon-web-private-wifi \
 	gluon-web-wifi-config \
 	gluon-web-network \
-	gluon-l3roamd \
 	gluon-mesh-vpn-fastd \
 	gluon-web-mesh-vpn-fastd \
 	gluon-status-page \
+	gluon-iptables-clamp-mss-to-pmtu \
+	gluon-iptables-clamp-mss-to-pmtu \
 	ffffm-banner \
 	ffffm-keep-radio-channel \
-	respondd-module-airtime \
-	prefixd \
-	tcpdump \
-	kmod-nat46 \
-	socat \
 	ffffm-autoupdater-use-site-conf-branch \
-	gluon-iptables-clamp-mss-to-pmtu
+	prefixd \
+	kmod-nat46 \
+	babeldev \
+	haveged \
+	iwinfo \
+	iptables \
+	tcpdump \
+	socat \
+
+include $(GLUON_SITEDIR)/specific_site.mk 
 
 
 ifeq ($(GLUON_TARGET),ar71xx-tiny)
@@ -44,25 +46,9 @@ GLUON_SITE_PACKAGES += -strace
 endif
 
 ifeq ($(GLUON_TARGET),x86-64)
-# support the usb stack on x86 devices
-# and add a few common USB NICs
 GLUON_DEBUG := 1
 GLUON_SITE_PACKAGES += \
-	kmod-usb-core \
-	kmod-usb2 \
-	kmod-usb-hid \
-	kmod-usb-net \
-	kmod-usb-net-asix \
-	kmod-usb-net-dm9601-ether \
-	kmod-cfg80211 \
-	libnl \
-	gdb \
-	valgrind \
-	screen \
-	iftop \
-	tcpdump \
-	binutils \
-	strace
+	kmod-cfg80211 
 endif
 
 #####################################################################################################################
