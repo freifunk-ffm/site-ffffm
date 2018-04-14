@@ -22,7 +22,6 @@ GLUON_SITE_PACKAGES := \
 	gluon-web-mesh-vpn-fastd \
 	gluon-status-page \
 	gluon-iptables-clamp-mss-to-pmtu \
-	gluon-iptables-clamp-mss-to-pmtu \
 	ffffm-banner \
 	ffffm-keep-radio-channel \
 	ffffm-autoupdater-use-site-conf-branch \
