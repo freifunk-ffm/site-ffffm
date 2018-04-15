@@ -117,7 +117,6 @@ UTIL_PACKAGES := \
 # Debug packages
 DEBUG_PACKAGES := \
 	tcpdump \
-	socat \
 	libnl \
 	gdb \
 	valgrind \	

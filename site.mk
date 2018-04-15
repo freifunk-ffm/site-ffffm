@@ -30,7 +30,8 @@ GLUON_SITE_PACKAGES := \
 	babeldev \
 	haveged \
 	iwinfo \
-	iptables
+	iptables \
+	socat
 
 include $(GLUON_SITEDIR)/specific_site.mk 
 
