@@ -30,33 +30,21 @@ GLUON_SITE_PACKAGES := \
 	babeldev \
 	haveged \
 	iwinfo \
-	iptables \
-	tcpdump \
-	socat \
+	iptables
 
 include $(GLUON_SITEDIR)/specific_site.mk 
 
 
-ifeq ($(GLUON_TARGET),ar71xx-tiny)
-# save some space to build ar71xx-tiny package
-GLUON_SITE_PACKAGES += -libpcap
-GLUON_SITE_PACKAGES += -tcpdump
-GLUON_SITE_PACKAGES += -strace
-endif
-
 ifeq ($(GLUON_TARGET),x86-64)
 GLUON_DEBUG := 1
-GLUON_SITE_PACKAGES += \
-	kmod-cfg80211 
 endif
 
 #####################################################################################################################
 
 # This is the Dev branch
-GLUON_MULTIDOMAIN=1
 
 # Gluon Base Release
-DEFAULT_GLUON_RELEASE := master_babel
+DEFAULT_GLUON_RELEASE := vHomebrew-babel-dev
 
 # For homebrew development add e.g. date and time 
 # (Note: Don't use the ':' char. It will break the build)
@@ -66,7 +54,7 @@ DEFAULT_GLUON_RELEASE := $(DEFAULT_GLUON_RELEASE)-$(shell date '+%Y.%m.%d')
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
 # Development branch information
-GLUON_BRANCH ?= babel
+GLUON_BRANCH ?= babel_dev
 
 # Default priority for updates.
 # GLUON_PRIORITY ?= 0
@@ -79,3 +67,6 @@ GLUON_REGION ?= eu
 
 # Prefer ath10k firmware with 802.11s support
 GLUON_ATH10K_MESH ?= 11s
+
+# Multidomain support
+GLUON_MULTIDOMAIN=1

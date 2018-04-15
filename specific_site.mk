@@ -3,13 +3,13 @@
 #####################################################################################################################
 
 
-# basic support for USB stack
+# Basic support for USB stack
 USB_PACKAGES_BASIC := \
 	kmod-usb-core \
 	kmod-usb2 \
 	usbutils
 
-# storage support for USB devices
+# Storage support for USB devices
 USB_PACKAGES_STORAGE := \
 	block-mount \
 	blkid \
@@ -33,7 +33,7 @@ USB_PACKAGES_STORAGE := \
 	swap-utils \
 	usb-modeswitch
 
-# network support for PCI devices
+# Network support for PCI devices
 PCI_PACKAGES_NET := \
 	kmod-3c59x \
 	kmod-e100 \
@@ -54,7 +54,7 @@ PCI_PACKAGES_NET := \
 	kmod-8139too \
 	kmod-atl2
 
-# network support for USB devices
+# Network support for USB devices
 USB_PACKAGES_NET := \
 	kmod-ath9k-htc  \
 	kmod-ath9k-common \
@@ -105,24 +105,29 @@ USB_KEYBOARD_PACKAGES := \
 
 # x86 spezifisch
 PCI_X86_PACKAGES :=\
-	kmod-usb-ohci-pci
+	pciutils \
+	kmod-usb-ohci-pci \
+	kmod-bnx2
 
-# util packages
+# Util packages
 UTIL_PACKAGES := \
 	nano \
-	tcpdump \
-	iperf \
 	iperf3 \
+
+# Debug packages
+DEBUG_PACKAGES := \
+	tcpdump \
 	socat \
 	libnl \
 	gdb \
-	screen \
+	valgrind \	
 	iftop \
-	tcpdump \
 	binutils \
-	strace
+	strace \
+	screen \
+	kmod-cfg80211
 
-# main combination 
+# Main combination 
 MAIN_COMBO_PACKAGES := \
 	$(USB_PACKAGES_BASIC) \
 	$(USB_PACKAGES_STORAGE) \
@@ -133,6 +138,24 @@ MAIN_COMBO_PACKAGES := \
 # GLUON-Target specific settings:
 #####################################################################################################################
 
+# ar71xx-tiny
+ifeq ($(GLUON_TARGET),ar71xx-tiny)
+GLUON_SITE_PACKAGES +=
+# Don't add aditional packages here. 
+# The ar71xx-tiny images require all free Flash memory space.
+endif
+
+# ar71xx Generic
+ifeq ($(GLUON_TARGET),ar71xx-generic)
+GLUON_SITE_PACKAGES += \
+	$(UTIL_PACKAGES)
+endif
+
+# ar71xx NAND
+ifeq ($(GLUON_TARGET),ar71xx-nand)
+GLUON_SITE_PACKAGES +=
+endif
+
 # x86-generic
 ifeq ($(GLUON_TARGET),x86-generic)
 # support the usb stack on x86 devices
@@ -142,7 +165,8 @@ GLUON_SITE_PACKAGES += \
 	$(USB_KEYBOARD_PACKAGES) \
 	$(USB_SERIAL_PACKAGES) \
 	$(PCI_PACKAGES_NET) \
-	$(PCI_X86_PACKAGES)
+	$(PCI_X86_PACKAGES) \
+	$(DEBUG_PACKAGES)
 endif
 
 # x86-64
@@ -154,7 +178,25 @@ GLUON_SITE_PACKAGES += \
 	$(USB_KEYBOARD_PACKAGES) \
 	$(USB_SERIAL_PACKAGES) \
 	$(PCI_PACKAGES_NET) \
-	$(PCI_X86_PACKAGES)
+	$(PCI_X86_PACKAGES) \
+	$(DEBUG_PACKAGES)
+endif
+
+# x86-geode
+# support the usb stack on x86-geode devices
+# and add a few common USB NICs
+ifeq ($(GLUON_TARGET),x86-geode)
+	$(MAIN_COMBO_PACKAGES) \
+	$(USB_KEYBOARD_PACKAGES) \
+	$(USB_SERIAL_PACKAGES) \
+	$(PCI_PACKAGES_NET) \
+	$(PCI_X86_PACKAGES) \
+	$(DEBUG_PACKAGES)
+endif
+
+# mpc85xx-generic
+ifeq ($(GLUON_TARGET),mpc85xx-generic)
+GLUON_SITE_PACKAGES +=
 endif
 
 # Raspberry Pi A/B/B+
@@ -173,6 +215,14 @@ GLUON_SITE_PACKAGES += \
 	$(USB_SERIAL_PACKAGES)
 endif
 
+# Raspberry Pi 3
+ifeq ($(GLUON_TARGET),brcm2708-bcm2710)
+GLUON_SITE_PACKAGES += \
+	$(MAIN_COMBO_PACKAGES) \
+	$(USB_KEYBOARD_PACKAGES) \
+	$(USB_SERIAL_PACKAGES)
+endif
+
 # Banana Pi
 ifeq ($(GLUON_TARGET),sunxi)
 GLUON_SITE_PACKAGES += \
@@ -181,31 +231,27 @@ GLUON_SITE_PACKAGES += \
 	$(USB_SERIAL_PACKAGES)
 endif
 
+# ramips-mt7620
+ifeq ($(GLUON_TARGET),ramips-mt7620)
+GLUON_SITE_PACKAGES +=
+endif
+
 # Ubiquiti EdgeRouter X (SFP)
 ifeq ($(GLUON_TARGET),ramips-mt7621)
 GLUON_SITE_PACKAGES += \
-	$(MAIN_COMBO_PACKAGES)
+$(UTIL_PACKAGES)
+endif
+
+# ramips-mt7628
+ifeq ($(GLUON_TARGET),ramips-mt7628)
+GLUON_SITE_PACKAGES +=
+endif
+
+#ramips-rt305x 
+ifeq ($(GLUON_TARGET),ramips-rt305x)
+GLUON_SITE_PACKAGES +=
 endif
 
 #####################################################################################################################
 # GLUON-Device specific settings:
 #####################################################################################################################
-
-# ar71xx-generic
-GLUON_ARCHERC7_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES)
-GLUON_DIR505A1_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES)
-GLUON_GLINET_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES)
-GLUON_TLWR842_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES)
-GLUON_TLWR1043_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES)
-GLUON_TLWR2543_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES)
-GLUON_TLWDR4300_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES)
-GLUON_WNDR3700_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES)
-GLUON_WRT160NL_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES)
-GLUON_WZRHPAG300H_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES)
-GLUON_WZRHPG450H_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES)
-# GLUON_DIR825B1_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES) # Build bricht ab
-# GLUON_TLWR710_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES) # some wr710 versions only have 4MB
-
-# mpc85xx-generic
-GLUON_TLWDR4900_SITE_PACKAGES := $(MAIN_COMBO_PACKAGES)
-
