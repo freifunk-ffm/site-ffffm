@@ -39,7 +39,7 @@ GLUON_MULTIDOMAIN := 1
 # This is the Stable branch
 
 # Gluon Base Release
-DEFAULT_GLUON_RELEASE := vHomebrew-stable
+DEFAULT_GLUON_RELEASE := v3.1.2
 
 # For homebrew development add e.g. date and time
 # (Note: Don't use the ':' char. It will break the build)
@@ -49,7 +49,7 @@ DEFAULT_GLUON_RELEASE := $(DEFAULT_GLUON_RELEASE)-$(shell date '+%Y.%m.%d')
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
 # Development branch information
-GLUON_BRANCH ?= stable
+GLUON_BRANCH ?= test
 
 # Default priority for updates.
 GLUON_PRIORITY ?= 0
