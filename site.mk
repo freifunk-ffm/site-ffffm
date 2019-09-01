@@ -43,7 +43,7 @@ DEFAULT_GLUON_RELEASE := v3.2
 
 # For homebrew development add e.g. date and time
 # (Note: Don't use the ':' char. It will break the build)
-DEFAULT_GLUON_RELEASE := $(DEFAULT_GLUON_RELEASE)-$(shell date '+%Y.%m.%d')
+DEFAULT_GLUON_RELEASE := $(DEFAULT_GLUON_RELEASE)-$(GLUON_BRANCH)-$(shell date '+%m%d')
 
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
