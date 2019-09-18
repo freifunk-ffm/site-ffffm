@@ -12,6 +12,7 @@ GLUON_FEATURES := \
 	respondd \
 	status-page \
 	web-wizard \
+	scheduled-domain-switch \
 
 GLUON_SITE_PACKAGES := \
 	iwinfo \
