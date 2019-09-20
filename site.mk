@@ -35,7 +35,7 @@ include $(GLUON_SITEDIR)/specific_site.mk
 GLUON_MULTIDOMAIN := 1
 
 
-# This is the 'Test' site branch.
+# This is the 'Dev' site branch.
 
 ########################################################################
 # BEGIN: "Generic homebrew build preparation"
@@ -45,7 +45,7 @@ GLUON_MULTIDOMAIN := 1
 ########################################################################
 
 # Homebrew Gluon firmware release name
-HOMEBREW_GLUON_RELEASE := vHomebrew-test
+HOMEBREW_GLUON_RELEASE := vHomebrew-dev
 
 # For homebrew development add e.g. date and time
 # (Note: Don't use the ':' char. It will break the build)
@@ -73,7 +73,7 @@ GLUON_RELEASE ?= $(HOMEBREW_GLUON_RELEASE)
 
 # Autoupdater default branch.
 # Allow overriding from the command line.
-GLUON_BRANCH ?= test
+GLUON_BRANCH ?= dev
 
 # Default priority for updates.
 # Allow overriding from the command line.
