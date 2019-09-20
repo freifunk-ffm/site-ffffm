@@ -204,6 +204,11 @@ ifeq ($(GLUON_TARGET),x86-geode)
 	-kmod-e1000e
 endif
 
+# mpc85xx-p1020
+ifeq ($(GLUON_TARGET),mpc85xx-p1020)
+GLUON_SITE_PACKAGES +=
+endif
+
 # mpc85xx-generic
 ifeq ($(GLUON_TARGET),mpc85xx-generic)
 GLUON_SITE_PACKAGES +=
@@ -246,19 +251,25 @@ ifeq ($(GLUON_TARGET),ramips-mt7620)
 GLUON_SITE_PACKAGES +=
 endif
 
-# Ubiquiti EdgeRouter X (SFP)
+# ramips-mt7621
 ifeq ($(GLUON_TARGET),ramips-mt7621)
 GLUON_SITE_PACKAGES += \
-$(UTIL_PACKAGES)
+	$(UTIL_PACKAGES)
 endif
 
 # ramips-mt76x8
 ifeq ($(GLUON_TARGET),ramips-mt76x8)
-GLUON_SITE_PACKAGES +=
+GLUON_SITE_PACKAGES += \
+	$(UTIL_PACKAGES)
 endif
 
 #ramips-rt305x 
 ifeq ($(GLUON_TARGET),ramips-rt305x)
+GLUON_SITE_PACKAGES +=
+endif
+
+#ipq40xx 
+ifeq ($(GLUON_TARGET),ipq40xx)
 GLUON_SITE_PACKAGES +=
 endif
 

@@ -27,3 +27,4 @@ msgstr ""
 "10 seconds during normal operation. The device will then reboot into config "
 "mode.</p>"
 "<p>Have fun with your new Freifunk node and exploring the Freifunk network!</p>"
+
