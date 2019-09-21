@@ -5,7 +5,7 @@ Die hier enthaltenen Patches sind so gestaltet, dass die Patch-Anwendungsaufrufe
 
 Wenn nicht anders angegeben, so müssen die Patches im Build-Ablauf meist vor dem Befehl
 
-    gluon update
+    make update
 angewendet werden.
 
 
