@@ -1,13 +1,12 @@
 GLUON_FEATURES := \
 	autoupdater \
+	config-mode-outdoor \
 	ebtables-filter-multicast \
 	ebtables-filter-ra-dhcp \
-	ebtables-limit-arp \
 	ebtables-source-filter \
 	mesh-batman-adv-14 \
 	mesh-batman-adv-15 \
 	mesh-vpn-fastd \
-	radvd \
 	radv-filterd \
 	respondd \
 	status-page \
@@ -16,8 +15,10 @@ GLUON_FEATURES := \
 
 GLUON_SITE_PACKAGES := \
 	iwinfo \
-	iptables \
 	haveged \
+	ffffm-keep-radio-channel \
+	ffffm-button-bind \
+	respondd-module-airtime \
 
 include $(GLUON_SITEDIR)/specific_site.mk
 
