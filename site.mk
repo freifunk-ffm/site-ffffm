@@ -38,6 +38,7 @@ GLUON_MULTIDOMAIN := 1
 
 
 # This is the 'Dev' site branch.
+FFM_SITE_BRANCH := dev
 
 ########################################################################
 # BEGIN: "Generic homebrew build preparation"
@@ -51,7 +52,7 @@ HOMEBREW_GLUON_RELEASE := vHomebrew
 
 # For homebrew development add e.g. date and time
 # (Note: Don't use the ':' char. It will break the build)
-HOMEBREW_GLUON_RELEASE := $(HOMEBREW_GLUON_RELEASE)-$(GLUON_BRANCH)-$(shell date '+%m%d')
+HOMEBREW_GLUON_RELEASE := $(HOMEBREW_GLUON_RELEASE)-$(FFM_SITE_BRANCH)-$(shell date '+%m%d')
 
 ########################################################################
 # END: "Generic homebrew build preparation"
@@ -71,7 +72,7 @@ HOMEBREW_GLUON_RELEASE := $(HOMEBREW_GLUON_RELEASE)-$(GLUON_BRANCH)-$(shell date
 
 # Autoupdater default branch.
 # Allow overriding from the command line.
-GLUON_BRANCH ?= dev
+GLUON_BRANCH ?= $(FFM_SITE_BRANCH)
 
 # Gluon release information.
 # Allow overriding from the command line.
