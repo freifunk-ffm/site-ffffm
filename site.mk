@@ -27,7 +27,8 @@ GLUON_SITE_PACKAGES := \
 	gluon-ssid-changer \
 	ffffm-autoupdater-use-site-conf-branch \
 	-gluon-web-autoupdater \
-	respondd-module-airtime
+	respondd-module-airtime \
+	gluon-config-mode-domain-select
 
 include $(GLUON_SITEDIR)/specific_site.mk
 
@@ -36,6 +37,7 @@ GLUON_MULTIDOMAIN := 1
 
 
 # This is the 'Test' site branch.
+FFM_SITE_BRANCH := test
 
 ########################################################################
 # BEGIN: "Generic homebrew build preparation"
@@ -45,11 +47,11 @@ GLUON_MULTIDOMAIN := 1
 ########################################################################
 
 # Homebrew Gluon firmware release name
-HOMEBREW_GLUON_RELEASE := vHomebrew-test
+HOMEBREW_GLUON_RELEASE := vHomebrew
 
 # For homebrew development add e.g. date and time
 # (Note: Don't use the ':' char. It will break the build)
-HOMEBREW_GLUON_RELEASE := $(HOMEBREW_GLUON_RELEASE)-$(shell date '+%m%d')
+HOMEBREW_GLUON_RELEASE := $(HOMEBREW_GLUON_RELEASE)-$(FFM_SITE_BRANCH)-$(shell date '+%m%d')
 
 ########################################################################
 # END: "Generic homebrew build preparation"
@@ -67,13 +69,13 @@ HOMEBREW_GLUON_RELEASE := $(HOMEBREW_GLUON_RELEASE)-$(shell date '+%m%d')
 # If this is not the case the following '?=' assignments apply.
 ########################################################################
 
+# Autoupdater default branch.
+# Allow overriding from the command line.
+GLUON_BRANCH ?= $(FFM_SITE_BRANCH)
+
 # Gluon release information.
 # Allow overriding from the command line.
 GLUON_RELEASE ?= $(HOMEBREW_GLUON_RELEASE)
-
-# Autoupdater default branch.
-# Allow overriding from the command line.
-GLUON_BRANCH ?= test
 
 # Default priority for updates.
 # Allow overriding from the command line.
