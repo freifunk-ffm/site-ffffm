@@ -1,4 +1,4 @@
-GLUON_SITE_FEEDS='ffffm_packages ssidchanger'
+GLUON_SITE_FEEDS='ffffm_packages'
 
 PACKAGES_FFFFM_PACKAGES_REPO=git://github.com/freifunk-ffm/packages.git
 PACKAGES_FFFFM_PACKAGES_COMMIT=94406af836d50b3d0435565953b9a89cfcc69e73
