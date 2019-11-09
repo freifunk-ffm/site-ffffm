@@ -1,5 +1,9 @@
 ## Stable-Version der Frankfurter Freifunkfirmware
 
+### v4.1-test-0911
+- Erstellt am 09.11.2019
+- Vorbereitendes Release, für BATMAN 15 Singledomain Stable
+
 ### v3.3-stable-0909
 - Erstellt am 09.09.2019
 - erstes 11s-only-release
