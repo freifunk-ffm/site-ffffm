@@ -19,6 +19,7 @@ GLUON_SITE_PACKAGES := \
 	ffffm-keep-radio-channel \
 	ffffm-button-bind \
 	respondd-module-airtime \
+	ffffm-autoupdater-use-site-conf-branch \
 
 include $(GLUON_SITEDIR)/specific_site.mk
 
@@ -30,10 +31,10 @@ GLUON_MULTIDOMAIN := 1
 # This is the Stable branch
 
 # Gluon Base Release
-DEFAULT_GLUON_RELEASE := v4.0
+DEFAULT_GLUON_RELEASE := v3.9
 
 # Development branch information
-GLUON_BRANCH ?= stable
+GLUON_BRANCH ?= test
 
 DEFAULT_GLUON_RELEASE := $(DEFAULT_GLUON_RELEASE)-$(GLUON_BRANCH)-$(shell date '+%m%d')
 
