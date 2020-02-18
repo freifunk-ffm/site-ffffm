@@ -1,20 +1,19 @@
 GLUON_FEATURES := \
 	autoupdater \
+	config-mode-outdoor \
+	config-mode-domain-select \
 	ebtables-filter-multicast \
 	ebtables-filter-ra-dhcp \
-	ebtables-limit-arp \
 	ebtables-source-filter \
-	mesh-batman-adv-14 \
+	mesh-batman-adv-15 \
 	mesh-vpn-fastd \
-	radvd \
 	radv-filterd \
 	respondd \
 	status-page \
-	web-advanced \
 	web-wizard \
 	web-private-wifi \
 	web-logging \
-
+	web-advanced \
 
 GLUON_SITE_PACKAGES := \
 	iwinfo \
@@ -29,6 +28,8 @@ GLUON_SITE_PACKAGES := \
 	-gluon-web-autoupdater \
 	respondd-module-airtime \
 	gluon-config-mode-domain-select
+	ffda-domain-director \
+	gluon-web-ffda-domain-director \
 
 include $(GLUON_SITEDIR)/specific_site.mk
 

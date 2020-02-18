@@ -1,0 +1,12 @@
+diff --git a/packages/gluon/admin/autoupdater/src/autoupdater.c b/packages/gluon/admin/autoupdater/src/autoupdater.c
+index 7a57700..35404c1 100644
+--- a/packages/gluon/admin/autoupdater/src/autoupdater.c
++++ b/packages/gluon/admin/autoupdater/src/autoupdater.c
+@@ -112,6 +112,7 @@ static void parse_args(int argc, char *argv[], struct settings *settings) {
+		{"no-action", no_argument,       NULL, OPTION_NO_ACTION},
+		{"force-version", no_argument, NULL, OPTION_FORCE_VERSION},
+		{"help",      no_argument,       NULL, OPTION_HELP},
++		{ 0, 0, 0, 0}
+	};
+ 
+	while (true) {

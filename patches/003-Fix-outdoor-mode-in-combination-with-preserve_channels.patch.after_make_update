@@ -1,0 +1,22 @@
+diff --git a/package/gluon-core/luasrc/lib/gluon/upgrade/200-wireless b/package/gluon-core/luasrc/lib/gluon/upgrade/200-wireless
+index eb120404..a4ea378d 100755
+--- a/package/gluon-core/luasrc/lib/gluon/upgrade/200-wireless
++++ b/package/gluon-core/luasrc/lib/gluon/upgrade/200-wireless
+@@ -53,12 +53,12 @@ end
+ 
+ local function get_channel(radio, config)
+	local channel
+-	if uci:get_first('gluon-core', 'wireless', 'preserve_channels') then
+-		-- preserved channel always wins
+-		channel = radio.channel
+-	elseif  (radio.hwmode == '11a' or radio.hwmode == '11na') and is_outdoor() then
+-		-- actual channel will be picked and probed from chanlist
++	if  (radio.hwmode == '11a' or radio.hwmode == '11na') and is_outdoor() then
++		-- outdoor always wins
+		channel = 'auto'
++	elseif uci:get_first('gluon-core', 'wireless', 'preserve_channels') then
++		-- actual channel will be restored
++		channel = radio.channel
+	end
+
+	return channel or config.channel()

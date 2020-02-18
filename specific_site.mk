@@ -91,30 +91,23 @@ USB_PACKAGES_NET := \
 	kmod-rt2500-usb
 
 # USB serial packages
-USB_SERIAL_PACKAGES := \
+USB_PACKAGES_SERIAL := \
 	kmod-usb-serial \
 	kmod-usb-serial-option \
 	kmod-usb-serial-ftdi \
 	kmod-usb-serial-pl2303
 
 # USB Keyboard packages
-USB_KEYBOARD_PACKAGES := \
+USB_PACKAGES_KEYBOARD := \
 	kmod-usb-hid \
 	kmod-hid-generic
 #	kmod-ledtrig-usbdev
 
 # x86 spezifisch
-PCI_X86_PACKAGES :=\
+PCI_PACKAGES_X86 :=\
 	pciutils \
 	kmod-usb-ohci-pci \
 	kmod-bnx2
-
-# Util packages
-UTIL_PACKAGES := \
-	nano \
-	joe \
-	iperf3 \
-	tcpdump 
 
 # Debug packages
 DEBUG_PACKAGES := \
@@ -129,13 +122,28 @@ DEBUG_PACKAGES := \
 	socat \
 	kmod-cfg80211
 
+# Util packages
+UTIL_PACKAGES := \
+	nano \
+	joe \
+	iperf3 \
+	tcpdump
 
-# Main combination 
-MAIN_COMBO_PACKAGES := \
+# Main combination
+USB_PACKAGES_COMBO := \
+	$(USB_PACKAGES_BASIC) \
+	$(USB_PACKAGES_NET) \
+	$(USB_PACKAGES_STORAGE) \
+	$(USB_PACKAGES_KEYBOARD) \
+	$(USB_PACKAGES_SERIAL)
+
+# General Packages for all targets
+GENERAL_PACKAGES := \
 	$(USB_PACKAGES_BASIC) \
 	$(USB_PACKAGES_STORAGE) \
-	$(USB_PACKAGES_NET) \
 	$(UTIL_PACKAGES)
+
+#	$(USB_PACKAGES_COMBO)
 
 ifeq ($(GLUON_DEBUG),1)
 GLUON_SITE_PACKAGES += \
@@ -145,6 +153,8 @@ endif
 #####################################################################################################################
 # GLUON-Target specific settings:
 #####################################################################################################################
+
+GLUON_SITE_PACKAGES += zram-swap
 
 # ar71xx-tiny
 ifeq ($(GLUON_TARGET),ar71xx-tiny)
@@ -156,12 +166,13 @@ endif
 # ar71xx Generic
 ifeq ($(GLUON_TARGET),ar71xx-generic)
 GLUON_SITE_PACKAGES += \
-	$(UTIL_PACKAGES)
+	$(GENERAL_PACKAGES)
 endif
 
 # ar71xx NAND
 ifeq ($(GLUON_TARGET),ar71xx-nand)
-GLUON_SITE_PACKAGES +=
+GLUON_SITE_PACKAGES += \
+	$(GENERAL_PACKAGES)
 endif
 
 # x86-generic
@@ -169,108 +180,102 @@ ifeq ($(GLUON_TARGET),x86-generic)
 # support the usb stack on x86 devices
 # and add a few common USB NICs
 GLUON_SITE_PACKAGES += \
-	$(MAIN_COMBO_PACKAGES) \
-	$(USB_KEYBOARD_PACKAGES) \
-	$(USB_SERIAL_PACKAGES) \
+	$(GENERAL_PACKAGES) \
+	$(USB_PACKAGES_COMBO) \
 	$(PCI_PACKAGES_NET) \
-	$(PCI_X86_PACKAGES) \
-	$(DEBUG_PACKAGES)
+	$(PCI_PACKAGES_X86)
 endif
 
 # x86-64
 ifeq ($(GLUON_TARGET),x86-64)
 # support the usb stack on x86-64 devices
 # and add a few common USB NICs
-GLUON_SITE_PACKAGES += \
-	$(MAIN_COMBO_PACKAGES) \
-	$(USB_KEYBOARD_PACKAGES) \
-	$(USB_SERIAL_PACKAGES) \
+GLUON_SITE_PACKAGES +=  \
+	$(GENERAL_PACKAGES) \
+	$(USB_PACKAGES_COMBO) \
 	$(PCI_PACKAGES_NET) \
-	$(PCI_X86_PACKAGES) \
-	$(DEBUG_PACKAGES)
+	$(PCI_PACKAGES_X86)
 endif
 
 # x86-geode
 # support the usb stack on x86-geode devices
 # and add a few common USB NICs
 ifeq ($(GLUON_TARGET),x86-geode)
-    GLUON_SITE_PACKAGES += \
-	$(MAIN_COMBO_PACKAGES) \
-	$(USB_KEYBOARD_PACKAGES) \
-	$(USB_SERIAL_PACKAGES) \
+GLUON_SITE_PACKAGES += \
+	$(GENERAL_PACKAGES) \
+	$(USB_PACKAGES_COMBO) \
 	$(PCI_PACKAGES_NET) \
-	$(PCI_X86_PACKAGES) \
-	$(DEBUG_PACKAGES) \
+	$(PCI_PACKAGES_X86) \
 	-kmod-e1000e
 endif
 
 # mpc85xx-p1020
 ifeq ($(GLUON_TARGET),mpc85xx-p1020)
-GLUON_SITE_PACKAGES +=
+GLUON_SITE_PACKAGES += \
+	$(GENERAL_PACKAGES)
 endif
 
 # mpc85xx-generic
 ifeq ($(GLUON_TARGET),mpc85xx-generic)
-GLUON_SITE_PACKAGES +=
+GLUON_SITE_PACKAGES += \
+	$(GENERAL_PACKAGES)
 endif
 
 # Raspberry Pi A/B/B+
 ifeq ($(GLUON_TARGET),brcm2708-bcm2708)
 GLUON_SITE_PACKAGES += \
-	$(MAIN_COMBO_PACKAGES) \
-	$(USB_KEYBOARD_PACKAGES) \
-	$(USB_SERIAL_PACKAGES)
+	$(GENERAL_PACKAGES) \
+	$(USB_PACKAGES_COMBO)
 endif
 
 # Raspberry Pi 2
 ifeq ($(GLUON_TARGET),brcm2708-bcm2709)
 GLUON_SITE_PACKAGES += \
-	$(MAIN_COMBO_PACKAGES) \
-	$(USB_KEYBOARD_PACKAGES) \
-	$(USB_SERIAL_PACKAGES)
+	$(GENERAL_PACKAGES) \
+	$(USB_PACKAGES_COMBO)
 endif
 
 # Raspberry Pi 3
 ifeq ($(GLUON_TARGET),brcm2708-bcm2710)
 GLUON_SITE_PACKAGES += \
-	$(MAIN_COMBO_PACKAGES) \
-	$(USB_KEYBOARD_PACKAGES) \
-	$(USB_SERIAL_PACKAGES)
+	$(GENERAL_PACKAGES) \
+	$(USB_PACKAGES_COMBO)
 endif
 
 # Banana Pi
 ifeq ($(GLUON_TARGET),sunxi-cortexa7)
 GLUON_SITE_PACKAGES += \
-	$(MAIN_COMBO_PACKAGES) \
-	$(USB_KEYBOARD_PACKAGES) \
-	$(USB_SERIAL_PACKAGES)
+	$(GENERAL_PACKAGES) \
+	$(USB_PACKAGES_COMBO)
 endif
 
 # ramips-mt7620
 ifeq ($(GLUON_TARGET),ramips-mt7620)
-GLUON_SITE_PACKAGES +=
+GLUON_SITE_PACKAGES += \
+	$(GENERAL_PACKAGES)
 endif
 
 # ramips-mt7621
 ifeq ($(GLUON_TARGET),ramips-mt7621)
 GLUON_SITE_PACKAGES += \
-	$(UTIL_PACKAGES)
+	$(GENERAL_PACKAGES)
 endif
 
 # ramips-mt76x8
 ifeq ($(GLUON_TARGET),ramips-mt76x8)
 GLUON_SITE_PACKAGES += \
-	$(UTIL_PACKAGES)
+	$(GENERAL_PACKAGES)
 endif
 
-#ramips-rt305x 
+#ramips-rt305x, no additional packages possible
 ifeq ($(GLUON_TARGET),ramips-rt305x)
 GLUON_SITE_PACKAGES +=
 endif
 
 #ipq40xx 
 ifeq ($(GLUON_TARGET),ipq40xx)
-GLUON_SITE_PACKAGES +=
+GLUON_SITE_PACKAGES += \
+	$(GENERAL_PACKAGES)
 endif
 
 #####################################################################################################################

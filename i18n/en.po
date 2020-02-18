@@ -28,3 +28,11 @@ msgstr ""
 "mode.</p>"
 "<p>Have fun with your new Freifunk node and exploring the Freifunk network!</p>"
 
+msgid "gluon-config-mode:domain-select"
+msgstr ""
+"<p> Please choose your domain. Please note that only nodes of the same domain can mesh with each other.</p>"
+"<p> If you are unsure, then select 'Single Domain'.</p>"
+
+msgid "gluon-config-mode:domain"
+msgstr ""
+"Domain"
