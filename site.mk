@@ -27,7 +27,7 @@ GLUON_SITE_PACKAGES := \
 	ffffm-autoupdater-use-site-conf-branch \
 	-gluon-web-autoupdater \
 	respondd-module-airtime \
-	gluon-config-mode-domain-select
+	gluon-config-mode-domain-select \
 	ffda-domain-director \
 	gluon-web-ffda-domain-director \
 
