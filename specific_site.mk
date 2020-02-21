@@ -139,11 +139,7 @@ USB_PACKAGES_COMBO := \
 
 # General Packages for all targets
 GENERAL_PACKAGES := \
-	$(USB_PACKAGES_BASIC) \
-	$(USB_PACKAGES_STORAGE) \
 	$(UTIL_PACKAGES)
-
-#	$(USB_PACKAGES_COMBO)
 
 ifeq ($(GLUON_DEBUG),1)
 GLUON_SITE_PACKAGES += \
@@ -272,8 +268,26 @@ ifeq ($(GLUON_TARGET),ramips-rt305x)
 GLUON_SITE_PACKAGES +=
 endif
 
-#ipq40xx 
-ifeq ($(GLUON_TARGET),ipq40xx)
+#ipq40xx-generic 
+ifeq ($(GLUON_TARGET),ipq40xx-generic)
+GLUON_SITE_PACKAGES += \
+	$(GENERAL_PACKAGES)
+endif
+
+#ipq806x-generic 
+ifeq ($(GLUON_TARGET),ipq806x-generic)
+GLUON_SITE_PACKAGES += \
+	$(GENERAL_PACKAGES)
+endif
+
+#lantiq-xrx200 
+ifeq ($(GLUON_TARGET),lantiq-xrx200)
+GLUON_SITE_PACKAGES += \
+	$(GENERAL_PACKAGES)
+endif
+
+#lantiq-xway 
+ifeq ($(GLUON_TARGET),lantiq-xway)
 GLUON_SITE_PACKAGES += \
 	$(GENERAL_PACKAGES)
 endif
