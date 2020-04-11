@@ -1,4 +1,10 @@
-## Stable-Version der Frankfurter Freifunkfirmware
+# Frankfurter Freifunk-Firmware
+### Firmware-Branches
+- Next: Baut aus Next
+- RC: Baut aus Stable
+- Stable: Baut von Tags auf Stable
+
+## Stable-Version der Frankfurter Freifunkfirmware (deprecated)
 
 ### v4.3.1-stable-0325
 - Erstellt am 25.03.2020
