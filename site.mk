@@ -94,6 +94,17 @@ GLUON_REGION ?= eu
 # Build only sysupgrade for deprecated
 GLUON_DEPRECATED ?= upgrade
 
+### Manual packages
+ifeq ($(GLUON_TARGET),ar71xx-tiny)
+GLUON_SITE_PACKAGES += \
+	ffffm-eol-ssid
+endif
+
+ifeq ($(GLUON_TARGET),ramips-rt305x)
+GLUON_SITE_PACKAGES += \
+	ffffm-eol-ssid
+endif
+
 ### Specific Packages
 
 INCLUDE_USB := \
