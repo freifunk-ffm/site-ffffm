@@ -16,7 +16,7 @@ Experimental-Firmware sind alle anderen. Eine Experimental-Firmware wird nicht o
 - Führe ci.sh aus dem Ordner site aus
 
 ## Stable-Version der Frankfurter Freifunkfirmware (deprecated)
-
+Die aktuellen Releases findest du unter https://github.com/freifunk-ffm/site-ffffm/releases
 ### v4.3.1-stable-0325
 - Erstellt am 25.03.2020
 - Basis ist Gluon [v2020.1.1](https://gluon.readthedocs.io/en/v2020.1/releases/v2020.1.1.html)
