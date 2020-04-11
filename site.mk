@@ -23,7 +23,11 @@ GLUON_SITE_PACKAGES := \
 	ffda-domain-director \
 	gluon-web-ffda-domain-director \
 
-include specific_site.mk
+ifndef GLUON_SITEDIR
+	include $(GLUON_SITEDIR)/specific_site.mk
+else
+	include specific_site.mk
+endif
 
 # Enable multidomain support
 GLUON_MULTIDOMAIN := 1
@@ -49,12 +53,15 @@ endif
 
 
 ### Build Release Name
+# Default: Goto Experimental
 DEFAULT_GLUON_BRANCH := experimental
 DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)
 ifeq ($(GIT_BRANCH),next)
+	# Next-Branch
 	DEFAULT_GLUON_BRANCH := next
 	DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)
 else ifeq ($(GIT_BRANCH),stable)
+	# RC-Branch
 	DEFAULT_GLUON_BRANCH := rc
 	DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)
 else ifeq ($GIT_BRANCH,HEAD)
