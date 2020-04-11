@@ -30,17 +30,53 @@ GLUON_MULTIDOMAIN := 1
 
 #####################################################################################################################
 
-# This is the Stable branch
+DEFAULT_GLUON_CHECKOUT := v2020.1.1
+GLUON_CHECKOUT ?= $(DEFAULT_GLUON_CHECKOUT)
 
-# Gluon Base Release
-DEFAULT_GLUON_RELEASE := v4.3
+# FFFFM Base Release
+DEFAULT_BASE_VERSION := v4.4
 
-# Development branch information
-GLUON_BRANCH ?= stable
+# GIT Properties
+ifndef GLUON_SITEDIR
+	GIT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
+	COMMIT_DESCRIPTION := $(shell git describe --tags --long)
+	BUILD_DATESTAMP := $(shell [ -f build_date ] && cat build_date || date '+%m%d')
+else
+	GIT_BRANCH := $(shell git -C $(GLUON_SITEDIR) rev-parse --abbrev-ref HEAD)
+	COMMIT_DESCRIPTION := $(shell git -C $(GLUON_SITEDIR) describe --tags --long)
+	BUILD_DATESTAMP := $(shell [ -f $(GLUON_SITEDIR)/build_date ] && cat $(GLUON_SITEDIR)/build_date || date '+%Y%m%d')
+endif
 
-DEFAULT_GLUON_RELEASE := $(DEFAULT_GLUON_RELEASE)-$(GLUON_BRANCH)-$(shell date '+%m%d')
 
-# Allow overriding the release number from the command line
+### Build Release Name
+DEFAULT_GLUON_BRANCH := experimental
+DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)
+ifeq ($(GIT_BRANCH),next)
+	DEFAULT_GLUON_BRANCH := next
+	DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)
+else ifeq ($(GIT_BRANCH),stable)
+	DEFAULT_GLUON_BRANCH := rc
+	DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)
+else ifeq ($GIT_BRANCH,HEAD)
+	# Determine TAG - if tagged set Version
+	ifndef GLUON_SITEDIR
+		GIT_TAG := $(shell git describe --exact-match --tags HEAD 2>/dev/null || echo false)
+		ifneq ($(GIT_TAG),false)
+			DEFAULT_GLUON_BRANCH := stable
+			DEFAULT_GLUON_RELEASE := $(GIT_TAG)
+		endif
+	else
+		GIT_TAG := $(shell git -C $(GLUON_SITEDIR) describe --exact-match --tags HEAD 2>/dev/null || echo false)
+		ifneq ($(GIT_TAG),false)
+			DEFAULT_GLUON_BRANCH := stable
+			DEFAULT_GLUON_RELEASE := $(GIT_TAG)
+		endif
+	endif
+endif
+
+# Set final Branch and release
+
+GLUON_BRANCH ?= $(DEFAULT_GLUON_BRANCH)
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
 # Default priority for updates.
