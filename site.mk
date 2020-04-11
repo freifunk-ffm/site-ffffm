@@ -23,7 +23,7 @@ GLUON_SITE_PACKAGES := \
 	ffda-domain-director \
 	gluon-web-ffda-domain-director \
 
-include $(GLUON_SITEDIR)/specific_site.mk
+include specific_site.mk
 
 # Enable multidomain support
 GLUON_MULTIDOMAIN := 1
