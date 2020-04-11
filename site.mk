@@ -60,7 +60,7 @@ else ifeq ($(GIT_BRANCH),stable)
 	# RC-Branch
 	DEFAULT_GLUON_BRANCH := rc
 	DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)
-else ifeq ($GIT_BRANCH,HEAD)
+else ifeq ($(GIT_BRANCH),HEAD)
 	# Determine TAG - if tagged set Version
 	ifndef GLUON_SITEDIR
 		GIT_TAG := $(shell git describe --exact-match --tags HEAD 2>/dev/null || echo false)
