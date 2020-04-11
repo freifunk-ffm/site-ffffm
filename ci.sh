@@ -38,6 +38,11 @@ build() {
 	done
 }
 
+build_all() {
+	SELECTED_TARGETS=$(make list-targets)
+	build
+}
+
 manifest() {
 	echo "Preparing build..."
 
@@ -50,7 +55,7 @@ manifest() {
 	make manifest $VERBOSE
 }
 
-if [[ $1 =~ ^(build|manifest)$ ]]; then
+if [[ $1 =~ ^(build|manifest|build_all)$ ]]; then
   "$@"
 else
   echo "Invalid subcommand $1" >&2
