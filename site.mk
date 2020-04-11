@@ -45,10 +45,12 @@ ifndef GLUON_SITEDIR
 	GIT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 	COMMIT_DESCRIPTION := $(shell git describe --tags --long)
 	BUILD_DATESTAMP := $(shell [ -f build_date ] && cat build_date || date '+%m%d')
+	GIT_COMMIT := $(shell git rev-parse --short HEAD)
 else
 	GIT_BRANCH := $(shell git -C $(GLUON_SITEDIR) rev-parse --abbrev-ref HEAD)
 	COMMIT_DESCRIPTION := $(shell git -C $(GLUON_SITEDIR) describe --tags --long)
 	BUILD_DATESTAMP := $(shell [ -f $(GLUON_SITEDIR)/build_date ] && cat $(GLUON_SITEDIR)/build_date || date '+%Y%m%d')
+	GIT_COMMIT := $(shell git -C $(GLUON_SITEDIR) rev-parse --short HEAD)
 endif
 
 
