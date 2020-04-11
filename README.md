@@ -1,8 +1,19 @@
 # Frankfurter Freifunk-Firmware
 ### Firmware-Branches
-- Next: Baut aus Next
-- RC: Baut aus Stable
-- Stable: Baut von Tags auf Stable
+#### Stable
+Die aktuelle Stabile Firmware. Die Releases basieren auf den Git-Tags, die unter https://github.com/freifunk-ffm/site-ffffm/releases zu finden sind.
+Wenn du selbst eine Stable-Firmware bauen willst, musst du den entsprechenden Tag auschecken und mittels "./ci.sh" bauen.
+#### RC
+Eine Release Candidate-Firmware ist eine fast fertige Stable-Firmware. Die Änderungen sind bereits auf den stable-Branch gemergt, jedoch noch nicht getaggt. Eine RC-Firmware erhälst du, wenn du auf den Stable-Branch auscheckst und mittels "./ci.sh" baust.
+#### Next
+Eine Next-Firmware enthält Änderungen, die "Work in Progress" auf dem Next-Branch sind, und ist tendenziell instabil. Sie entsteht aus jedem Build, der auf dem Next-Branch basiert.
+#### Experimental
+Experimental-Firmware sind alle anderen. Eine Experimental-Firmware wird nicht offiziell angeboten, und kann beispielsweise für Versuche verwendet werden.
+
+### Allgemeines zum Buildprozess:
+- Klone https://github.com/freifunk-gluon/gluon
+- Klone dieses Repository in den Unterordner "site"
+- Führe ci.sh aus dem Ordner site aus
 
 ## Stable-Version der Frankfurter Freifunkfirmware (deprecated)
 
