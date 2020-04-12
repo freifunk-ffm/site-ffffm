@@ -8,7 +8,7 @@ Eine Release Candidate-Firmware ist eine fast fertige Stable-Firmware. Die Ände
 #### Next
 Eine Next-Firmware enthält Änderungen, die "Work in Progress" auf dem Next-Branch sind, und ist tendenziell instabil. Sie entsteht aus jedem Build, der auf dem Next-Branch basiert.
 #### Experimental
-Experimental-Firmware sind alle anderen. Eine Experimental-Firmware wird nicht offiziell angeboten, und kann beispielsweise für Versuche verwendet werden.
+Experimental-Firmware sind alle anderen. Eine Experimental-Firmware wird nicht offiziell angeboten, und kann beispielsweise für Versuche verwendet werden. Beispielsweise wird aus dem experimental-Branch gegen Gluon Master gebaut.
 
 ### Allgemeines zum Buildprozess:
 - Klone https://github.com/freifunk-gluon/gluon
