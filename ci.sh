@@ -25,7 +25,11 @@ build() {
 	echo "Preparing build..."
 
 	export FORCE_UNSAFE_CONFIGURE=1
-	export VERBOSE=V=1
+	if [ "$GLUON_BRANCH" == "experimental" ]; then
+		export VERBOSE=V=1
+	else
+		export VERBOSE=
+	fi
 
 	make show-release $VERBOSE
 
