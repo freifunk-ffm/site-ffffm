@@ -29,7 +29,6 @@ GLUON_MULTIDOMAIN := 1
 #####################################################################################################################
 
 DEFAULT_GLUON_CHECKOUT := v2020.1.1
-GLUON_CHECKOUT ?= $(DEFAULT_GLUON_CHECKOUT)
 
 # FFFFM Base Release
 DEFAULT_BASE_VERSION := v4.4
@@ -60,7 +59,7 @@ else ifeq ($(GIT_BRANCH),experimental)
 		# RC-Branch
 		DEFAULT_GLUON_BRANCH := experimental
 		DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)
-		GLUON_CHECKOUT := master
+		DEFAULT_GLUON_CHECKOUT := master
 else ifeq ($(GIT_BRANCH),stable)
 	# RC-Branch
 	DEFAULT_GLUON_BRANCH := rc
@@ -86,6 +85,7 @@ endif
 
 GLUON_BRANCH ?= $(DEFAULT_GLUON_BRANCH)
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
+GLUON_CHECKOUT ?= $(DEFAULT_GLUON_CHECKOUT)
 
 # Default priority for updates.
 GLUON_PRIORITY ?= 0
