@@ -21,8 +21,6 @@ echo "Checking out ${GLUON_CHECKOUT}"
 git checkout "${GLUON_CHECKOUT}"
 git pull origin "${GLUON_CHECKOUT}"
 
-make update
-
 build() {
 	echo "Preparing build..."
 
@@ -56,7 +54,8 @@ manifest() {
 }
 
 if [[ $1 =~ ^(build|manifest|build_all)$ ]]; then
-  "$@"
+	make update
+	"$@"
 else
   echo "Invalid subcommand $1" >&2
   exit 1
