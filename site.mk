@@ -27,8 +27,11 @@ GLUON_SITE_PACKAGES := \
 GLUON_MULTIDOMAIN := 1
 
 #####################################################################################################################
-
-include version.mk
+ifndef GLUON_SITEDIR
+	include version.mk
+else
+	include $(GLUON_SITEDIR)/version.mk
+endif
 
 # GIT Properties
 ifndef GLUON_SITEDIR
