@@ -28,10 +28,7 @@ GLUON_MULTIDOMAIN := 1
 
 #####################################################################################################################
 
-DEFAULT_GLUON_CHECKOUT := v2020.1.1
-
-# FFFFM Base Release
-DEFAULT_BASE_VERSION := v4.4
+include version.mk
 
 # GIT Properties
 ifndef GLUON_SITEDIR
