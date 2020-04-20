@@ -19,7 +19,7 @@ cd ..
 
 echo "Checking out ${GLUON_CHECKOUT}"
 git checkout "${GLUON_CHECKOUT}"
-git pull origin "${GLUON_CHECKOUT}"
+git pull "${GLUON_REMOTE}" "${GLUON_CHECKOUT}"
 
 build() {
 	echo "Preparing build..."
