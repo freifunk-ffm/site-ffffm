@@ -21,6 +21,10 @@ echo "Checking out ${GLUON_CHECKOUT}"
 git checkout "${GLUON_CHECKOUT}"
 git pull "${GLUON_REMOTE}" "${GLUON_CHECKOUT}"
 
+update() {
+	make update
+}
+
 build() {
 	echo "Preparing build..."
 
@@ -41,8 +45,10 @@ build() {
 }
 
 build_all() {
+	update
 	SELECTED_TARGETS=$(make list-targets)
 	build
+	manifest
 }
 
 manifest() {
@@ -57,9 +63,8 @@ manifest() {
 	make manifest $VERBOSE
 }
 
-if [[ $1 =~ ^(build|manifest|build_all)$ ]]; then
-	make update
-	"$@"
+if [[ $1 =~ ^(build|manifest|build_all|update)$ ]]; then
+  "$@"
 else
   echo "Invalid subcommand $1" >&2
   exit 1
