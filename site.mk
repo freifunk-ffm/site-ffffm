@@ -39,31 +39,33 @@ ifndef GLUON_SITEDIR
 	COMMIT_DESCRIPTION := $(shell git describe --tags --long)
 	BUILD_DATESTAMP := $(shell [ -f build_date ] && cat build_date || date '+%m%d')
 	GIT_COMMIT := $(shell git rev-parse --short HEAD)
+	GLUON_COMMIT := $(shell git -C .. rev-parse --short HEAD)
 else
 	GIT_BRANCH := $(shell git -C $(GLUON_SITEDIR) rev-parse --abbrev-ref HEAD)
 	COMMIT_DESCRIPTION := $(shell git -C $(GLUON_SITEDIR) describe --tags --long)
 	BUILD_DATESTAMP := $(shell [ -f $(GLUON_SITEDIR)/build_date ] && cat $(GLUON_SITEDIR)/build_date || date '+%Y%m%d')
 	GIT_COMMIT := $(shell git -C $(GLUON_SITEDIR) rev-parse --short HEAD)
+	GLUON_COMMIT := $(shell git -C $(GLUON_SITEDIR)/.. rev-parse --short HEAD)
 endif
 
 
 ### Build Release Name
 # Default: Goto Experimental
 DEFAULT_GLUON_BRANCH := experimental
-DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)
+DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)-$(GLUON_COMMIT)
 ifeq ($(GIT_BRANCH),next)
 	# Next-Branch
 	DEFAULT_GLUON_BRANCH := next
-	DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)
+	DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)-$(GLUON_COMMIT)
 else ifeq ($(GIT_BRANCH),experimental)
 		# RC-Branch
 		DEFAULT_GLUON_BRANCH := experimental
-		DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)
+		DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)-$(GLUON_COMMIT)
 		DEFAULT_GLUON_CHECKOUT := master
 else ifeq ($(GIT_BRANCH),stable)
 	# RC-Branch
 	DEFAULT_GLUON_BRANCH := rc
-	DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)
+	DEFAULT_GLUON_RELEASE := $(DEFAULT_BASE_VERSION)-$(DEFAULT_GLUON_BRANCH)-$(BUILD_DATESTAMP)-$(GIT_COMMIT)-$(GLUON_COMMIT)
 else ifeq ($(GIT_BRANCH),HEAD)
 	# Determine TAG - if tagged set Version
 	ifndef GLUON_SITEDIR
