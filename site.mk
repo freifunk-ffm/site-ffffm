@@ -17,7 +17,6 @@ GLUON_FEATURES := \
 
 GLUON_SITE_PACKAGES := \
 	iwinfo \
-	haveged \
 	ffffm-button-bind \
 	respondd-module-airtime \
 	ffda-domain-director \
@@ -114,6 +113,9 @@ ifeq ($(GLUON_TARGET),ramips-rt305x)
 GLUON_SITE_PACKAGES += \
 	ffffm-eol-ssid
 endif
+
+# Gluon Device Class specific features
+GLUON_FEATURES_standard := wireless-encryption-wpa3
 
 ### Specific Packages
 
