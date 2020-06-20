@@ -1,4 +1,7 @@
 # Frankfurter Freifunk-Firmware
+
+### This is the legacy branch. Project moved to https://chaos.expert/FFFFM/site
+
 ### Firmware-Branches
 #### Stable
 Die aktuelle Stabile Firmware. Die Releases basieren auf den Git-Tags, die unter https://github.com/freifunk-ffm/site-ffffm/releases zu finden sind.
